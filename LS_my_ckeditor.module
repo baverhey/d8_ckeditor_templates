@@ -1,0 +1,25 @@
+<?php
+
+/**
+ * @file
+ * Provides Templates plugin for CKEditor WYSIWYG editor.
+ * See http://ckeditor.com/addon/templates
+ *
+ * Enforcing globally the templates is by design.
+ */
+
+/**
+ * Implements hook_editor_js_settings_alter
+ * @param array $settings
+ */
+function LS_my_ckeditor_editor_js_settings_alter(array &$settings) {
+  if (empty($settings['editor']['formats']))
+    return;
+  foreach ($settings['editor']['formats'] as $format => $setting) {
+    //@todo: hier nog de templates enabelen voor allemaal
+    // http://docs.ckeditor.com/#!/api/CKEDITOR.config-cfg-skin
+    // When setting config.skin it is possible to specify custom skin location after a comma.
+    if ($setting['editor'] == 'ckeditor')
+      $settings['editor']['formats'][$format]['editorSettings']['skin'] = 'moonocolor,' . base_path() . drupal_get_path('module', 'moonocolor') . '/js/skins/moonocolor/';
+  }
+}
