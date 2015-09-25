@@ -1,0 +1,8 @@
+name: LS widgetcommon ckeditor
+type: module
+description: This plugin addes the widgetcommon add on of ckeditor
+core: 8.x
+package: CKEditor
+version: VERSION
+dependencies:
+  - ckeditor
